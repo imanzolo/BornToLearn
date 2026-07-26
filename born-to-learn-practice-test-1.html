@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Born to Learn — IELTS Academic Practice Test 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0B; --ink-60:#55565C; --ink-35:#8E9098;
+  --paper:#fff; --wash:#EAF8FE; --line:#E4E7EB;
+  --cyan:#29C5F6; --cyan-deep:#0A7CA5; --star:#FFC530;
+  --ok:#1E9E63; --bad:#D8442F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#F7F9FA;color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--cyan-deep);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;gap:14px;height:62px;flex-wrap:wrap}
+.brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.brand i{font-style:normal;color:var(--cyan)}
+.tabs{display:flex;gap:6px}
+.tab{font:inherit;font-size:14.5px;font-weight:600;padding:7px 15px;border-radius:999px;
+  border:1.5px solid var(--line);background:#fff;color:var(--ink-60);cursor:pointer}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.timer{font-family:"JetBrains Mono",monospace;font-size:15px;font-weight:600;
+  padding:7px 13px;border-radius:9px;background:var(--wash);color:var(--cyan-deep);border:1.5px solid var(--cyan)}
+.timer.low{background:#FFF0EC;border-color:var(--bad);color:var(--bad)}
+.tbtn{font:inherit;font-size:13.5px;font-weight:600;border:0;background:none;color:var(--cyan-deep);cursor:pointer;padding:6px}
+.tbtn:hover{text-decoration:underline}
+
+.page{padding:26px 0 70px}
+.hidden{display:none}
+
+.head{margin-bottom:20px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-35)}
+.head h1{font-size:clamp(24px,3.4vw,34px);margin-top:8px}
+.head p{margin-top:9px;color:var(--ink-60);font-size:16px;max-width:62em}
+
+.split{display:grid;grid-template-columns:1.06fr 1fr;gap:20px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.card.scroll{max-height:78vh;overflow-y:auto;position:sticky;top:84px}
+
+/* passage */
+.passage h2{font-size:23px;margin-bottom:4px}
+.passage .meta{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-35);letter-spacing:.1em;text-transform:uppercase}
+.passage .para{margin-top:15px;display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:15.5px;line-height:1.68}
+.passage .para .lt{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13px;color:var(--cyan-deep);padding-top:3px}
+
+/* questions */
+.qblock{margin-bottom:30px}
+.qblock .inst{background:var(--wash);border-radius:11px;padding:14px 16px;font-size:14.5px;line-height:1.5}
+.qblock .inst b{font-weight:600}
+.qblock .rng{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--cyan-deep);text-transform:uppercase;margin-bottom:8px;display:block}
+
+.q{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15.5px;align-items:start}
+.q:last-child{border-bottom:0}
+.q .n{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13.5px;color:var(--ink-35);padding-top:3px}
+.opts{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.opts label{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.04em;
+  padding:6px 12px;border:1.5px solid var(--line);border-radius:999px;cursor:pointer;background:#fff;user-select:none}
+.opts input{position:absolute;opacity:0;width:0;height:0}
+.opts input:checked+span{color:#fff}
+.opts label:has(input:checked){background:var(--ink);border-color:var(--ink);color:#fff}
+.opts label:has(input:focus-visible){outline:3px solid var(--cyan-deep);outline-offset:2px}
+.gap{font:inherit;font-size:15px;padding:8px 11px;border:1.5px solid var(--line);border-radius:9px;
+  width:170px;margin-top:8px;background:#fff}
+.gap:focus{border-color:var(--cyan);outline:none}
+
+.fb{margin-top:9px;font-size:14px;padding:9px 12px;border-radius:9px;display:none;line-height:1.5}
+.fb.on{display:block}
+.fb.good{background:#EDF8F2;color:#12693F;border:1px solid #BFE6D2}
+.fb.bad{background:#FFF1EE;color:#96301F;border:1px solid #FBD2C9}
+.fb b{font-weight:600}
+
+.wordbank{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.wordbank span{font-family:"JetBrains Mono",monospace;font-size:12.5px;padding:6px 11px;
+  background:#fff;border:1.5px solid var(--line);border-radius:8px}
+.wordbank span b{color:var(--cyan-deep);font-weight:600;margin-right:5px}
+
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.btn{font:inherit;font-weight:600;font-size:15.5px;padding:13px 24px;border:0;border-radius:11px;
+  background:var(--cyan);color:#052a38;cursor:pointer}
+.btn:hover{background:#12b6ec}
+.btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink-60)}
+.btn.ghost:hover{border-color:var(--ink-35);background:#fff}
+
+.result{position:relative;overflow:hidden;margin-top:20px;padding:20px 22px;border-radius:14px;background:var(--ink);color:#fff;display:none}
+.result.on{display:block}
+.result .big{font-family:"JetBrains Mono",monospace;font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.result p{color:#B9BCC4;font-size:15px;margin-top:10px;max-width:52em}
+
+/* writing */
+.task{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;margin-bottom:20px}
+.task h2{font-size:21px}
+.task .lead{margin-top:12px;font-size:15.5px;color:var(--ink-60)}
+.prompt{margin-top:16px;padding:18px 20px;background:var(--wash);border-radius:12px;font-size:16.5px;line-height:1.6}
+.chartbox{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;overflow-x:auto}
+.chartbox figcaption{font-size:13.5px;color:var(--ink-35);margin-top:10px;text-align:center;font-family:"JetBrains Mono",monospace}
+textarea{width:100%;margin-top:16px;min-height:230px;padding:16px;font:inherit;font-size:15.5px;line-height:1.65;
+  border:1.5px solid var(--line);border-radius:12px;resize:vertical;background:#fff}
+textarea:focus{border-color:var(--cyan);outline:none}
+.wc{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;
+  font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-35);flex-wrap:wrap}
+.wc b{color:var(--ink);font-weight:600}
+.wc .under{color:var(--bad)}
+.wc .over{color:var(--ok)}
+
+.note{margin-top:26px;padding:18px 20px;border-left:3px solid var(--star);background:#FFFCF3;
+  border-radius:0 12px 12px 0;font-size:15px;color:#4A4530;line-height:1.6}
+
+/* ---------- motion ---------- */
+@keyframes pop{0%{transform:scale(.6) rotate(-12deg);opacity:0}62%{transform:scale(1.18) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes slidein{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes nudge{12%,88%{transform:translateX(-3px)}34%,66%{transform:translateX(4px)}50%{transform:translateX(-4px)}}
+@keyframes flashpara{0%{background:transparent}14%{background:#FFF2C9}100%{background:transparent}}
+@keyframes ripple{to{transform:scale(2.8);opacity:0}}
+@keyframes starburst{0%{transform:scale(0) rotate(0);opacity:1}70%{opacity:1}100%{transform:scale(1.9) rotate(150deg);opacity:0}}
+
+.q{transition:background .25s ease;border-radius:9px;padding-inline:6px;margin-inline:-6px}
+.q.marked-ok{background:#F3FBF7}
+.q.marked-no{background:#FFF7F5;animation:nudge .42s ease}
+.badge{display:inline-flex;align-items:center;justify-content:center;
+  width:19px;height:19px;border-radius:50%;font-size:11.5px;font-weight:700;color:#fff;
+  margin-left:6px;vertical-align:1px;animation:pop .36s cubic-bezier(.2,1.5,.4,1) both}
+.badge.ok{background:var(--ok)}
+.badge.no{background:var(--bad)}
+.fb.on{animation:slidein .32s ease both}
+.jump{display:inline-block;margin-top:7px;font-weight:600;font-size:13.5px;
+  color:inherit;text-decoration:none;border-bottom:1.5px solid currentColor;opacity:.75;cursor:pointer}
+.jump:hover{opacity:1}
+.para{border-radius:8px;padding:2px 6px;margin-inline:-6px}
+.para.flash{animation:flashpara 1.9s ease}
+
+.opts label{transition:transform .13s cubic-bezier(.2,1.4,.4,1), background .16s ease, border-color .16s ease}
+.opts label:active{transform:scale(.93)}
+.btn{position:relative;overflow:hidden;transition:transform .13s cubic-bezier(.2,1.4,.4,1)}
+.btn:active{transform:scale(.96)}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);
+  transform:scale(0);animation:ripple .55s ease-out forwards;pointer-events:none}
+.btn.ghost .rip{background:rgba(10,10,11,.1)}
+
+/* progress */
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.prog .track{flex:1;height:7px;border-radius:99px;background:#EDF0F3;overflow:hidden}
+.prog .track i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--cyan),var(--cyan-deep));
+  transition:width .45s cubic-bezier(.2,.8,.3,1)}
+.prog .lbl{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:600;color:var(--ink-35);white-space:nowrap}
+.prog .lbl.full{color:var(--cyan-deep)}
+
+.result{transition:opacity .4s ease, transform .4s ease}
+.result:not(.on){opacity:0;transform:translateY(10px)}
+.result.on{opacity:1;transform:none}
+.star{position:absolute;font-size:26px;pointer-events:none;animation:starburst .9s ease-out forwards}
+
+/* word count bar */
+.wbar{height:5px;border-radius:99px;background:#EDF0F3;overflow:hidden;margin-top:8px}
+.wbar i{display:block;height:100%;width:0;border-radius:99px;background:var(--cyan);
+  transition:width .3s ease, background .3s ease}
+.wbar i.done{background:var(--ok)}
+
+/* ---------- word bank + drag ---------- */
+.wordbank{gap:9px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:12.5px;padding:8px 13px;
+  background:#fff;border:1.5px solid var(--line);border-radius:9px;cursor:grab;
+  touch-action:none;user-select:none;color:var(--ink);
+  transition:transform .14s cubic-bezier(.2,1.4,.4,1),border-color .16s ease,background .16s ease,opacity .2s ease}
+.chip b{color:var(--cyan-deep);font-weight:600;margin-right:6px}
+.chip:hover{border-color:var(--cyan)}
+.chip:active{cursor:grabbing}
+.chip.armed{background:var(--ink);border-color:var(--ink);color:#fff;transform:translateY(-2px) scale(1.05)}
+.chip.armed b{color:var(--cyan)}
+.chip.used{opacity:.28;border-style:dashed;pointer-events:none}
+.chip.lifting{opacity:.3}
+.ghostchip{position:fixed;z-index:99;pointer-events:none;margin:0;
+  transform:translate(-50%,-50%) rotate(-3deg) scale(1.07);
+  box-shadow:0 14px 30px -10px rgba(10,10,11,.5);
+  background:var(--ink);color:#fff;border-color:var(--ink)}
+.ghostchip b{color:var(--cyan)}
+
+.summary{margin-top:18px;font-size:15.5px;line-height:2.4;color:#1A1B1F}
+.drop{display:inline-flex;align-items:center;justify-content:center;
+  min-width:98px;padding:4px 10px;margin:0 3px;vertical-align:2px;
+  font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:600;
+  border:1.5px dashed #B8C0C7;border-radius:8px;background:#FBFCFD;color:var(--ink-35);cursor:pointer;
+  transition:transform .14s cubic-bezier(.2,1.4,.4,1),border-color .16s ease,background .16s ease,color .16s ease}
+.drop.waiting{border-color:var(--cyan);background:var(--wash);color:var(--cyan-deep)}
+.drop.over{border-color:var(--cyan);border-style:solid;background:var(--wash);transform:scale(1.09)}
+.drop.filled{border-style:solid;border-color:var(--ink);background:var(--ink);color:#fff}
+.drop.ok{border-color:var(--ok);background:#EDF8F2;color:#12693F}
+.drop.no{border-color:var(--bad);background:#FFF1EE;color:#96301F;text-decoration:line-through}
+@keyframes dpop{0%{transform:scale(.78)}55%{transform:scale(1.15)}100%{transform:scale(1)}}
+.drop.pop{animation:dpop .34s cubic-bezier(.2,1.4,.4,1)}
+.qsum{display:none}
+.qsum.shown{display:grid;animation:slidein .3s ease both}
+
+@media (max-width:560px){ .summary{line-height:2.6;font-size:15px} .drop{min-width:88px} }
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+
+@media (max-width:960px){
+  .split{grid-template-columns:1fr}
+  .card.scroll{position:static;max-height:none}
+}
+@media (max-width:560px){
+  .card,.task{padding:20px 18px;border-radius:13px}
+  .topbar-in{height:auto;padding:10px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <span class="brand">Born to <i>Learn</i> · Practice Test 1</span>
+    <div class="tabs">
+      <button class="tab on" data-go="reading">Reading</button>
+      <button class="tab" data-go="writing">Writing</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="timer" id="clock">20:00</span>
+      <button class="tbtn" id="tstart">Start</button>
+      <button class="tbtn" id="treset">Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== READING ===================== -->
+<div class="page wrap" id="reading">
+
+  <div class="head">
+    <span class="eyebrow">Academic Reading · Passage 1 · Questions 1–13</span>
+    <h1>The orchard at the centre of the world</h1>
+    <p>Spend about 20 minutes on this passage. Answer all thirteen questions, then check your answers to see the reasoning behind each one.</p>
+  </div>
+
+  <div class="split">
+
+    <!-- passage -->
+    <div class="card scroll passage">
+      <span class="meta">Reading Passage 1</span>
+      <h2 style="margin-top:6px">The orchard at the centre of the world</h2>
+
+      <div class="para" data-p="A"><span class="lt">A</span><span>Almaty, the largest city in Kazakhstan, sits at the foot of the Tian Shan mountains. Its name comes from <i>alma</i>, the Kazakh word for apple, and the naming was not sentimental. The slopes above the city carry forests of wild apple trees that have grown there without human planting for millions of years. Travellers in the nineteenth century described riding for days through woodland where every second tree bore fruit, and where the apples underfoot were so numerous that the air smelled of cider by late summer.</span></div>
+
+      <div class="para" data-p="B"><span class="lt">B</span><span>The tree responsible is <i>Malus sieversii</i>. What sets it apart from other wild apple species is size. Most wild apples are small, hard and bitter — the European crab apple rarely exceeds three centimetres across. <i>M. sieversii</i>, by contrast, regularly produces fruit as large as a modern supermarket apple, and individual trees in the Tian Shan vary enormously: some bear fruit that is sweet and yellow, others sour and deep red, others small and astringent. This variation, spread across a single wild population, is far greater than anything found in commercial orchards.</span></div>
+
+      <div class="para" data-p="C"><span class="lt">C</span><span>Why the fruit grew so large is a question of who was eating it. Small, hard apples are dispersed by birds, which swallow seeds whole and pass them intact. But the Tian Shan forests were also home to bears, deer and wild horses. A bear approaching a tree does not eat indiscriminately; it works through the fruit and returns to the trees whose apples are largest and sweetest. Seeds from those trees travelled furthest, in a package of fertiliser, and were more likely to establish. Over a very long period, the animals were performing a slow, unplanned selection — and the result was a wild fruit already halfway to domestication before any human touched it.</span></div>
+
+      <div class="para" data-p="D"><span class="lt">D</span><span>From the second century BCE, the trade routes later known collectively as the Silk Road ran directly through this region. Apples travel badly but apple seeds travel well: they are small, dry and remain viable for months. Seeds moved west with caravans, were discarded at campsites, and germinated along the roadside. Where those trees met the native European crab apple, <i>Malus sylvestris</i>, the two hybridised freely. Genetic work published in recent decades has confirmed that the modern domesticated apple carries substantial contributions from both species, with the Central Asian ancestor dominant and the European one adding hardiness and disease resistance.</span></div>
+
+      <div class="para" data-p="E"><span class="lt">E</span><span>There was, however, an obstacle that no amount of seed-carrying could solve. Apples are extreme outbreeders: a seed from a sweet apple will almost never produce a tree bearing sweet fruit. Plant a hundred pips from one prized tree and you may get a hundred trees, all different, and most of them disappointing. Every named variety in existence — every Fuji, every Golden Delicious — is therefore not a lineage but a single original tree, kept alive by grafting cuttings onto rootstock, over and over, sometimes for centuries. Grafting was already an established horticultural technique in the ancient world, and it is what turned the apple from a lottery into a crop.</span></div>
+
+      <div class="para" data-p="F"><span class="lt">F</span><span>The wild forests that began the whole process are now among the most threatened woodland in Central Asia. Estimates suggest that a large majority of the original <i>M. sieversii</i> forest has disappeared over the past century, cleared for orchards and housing as Almaty expanded up the slopes, and thinned by livestock which eat the seedlings before they can establish. The irony is sharp. Commercial apple growing worldwide now rests on a very narrow genetic base, and when breeders need resistance to a new disease, the place they increasingly look is the Tian Shan — the forest that is being cut down to plant the orchards that need it.</span></div>
+    </div>
+
+    <!-- questions -->
+    <div class="card">
+
+      <div class="prog">
+        <span class="lbl" id="plbl">0 / 13</span>
+        <span class="track"><i id="pbar"></i></span>
+      </div>
+
+      <div class="qblock">
+        <span class="rng">Questions 1–6</span>
+        <div class="inst">Do the following statements agree with the information given in Reading Passage 1?<br><br>
+          Write <b>TRUE</b> if the statement agrees with the information, <b>FALSE</b> if the statement contradicts the information, or <b>NOT GIVEN</b> if there is no information on this.</div>
+
+        <div class="q" data-q="1"><span class="n">1</span><span>
+          The city of Almaty takes its name from a fruit that grows nearby.
+          <div class="opts">
+            <label><input type="radio" name="q1" value="TRUE"><span>TRUE</span></label>
+            <label><input type="radio" name="q1" value="FALSE"><span>FALSE</span></label>
+            <label><input type="radio" name="q1" value="NOT GIVEN"><span>NOT GIVEN</span></label>
+          </div><div class="fb"></div></span></div>
+
+        <div class="q" data-q="2"><span class="n">2</span><span>
+          <i>Malus sieversii</i> produces smaller fruit than most other wild apple species.
+          <div class="opts">
+            <label><input type="radio" name="q2" value="TRUE"><span>TRUE</span></label>
+            <label><input type="radio" name="q2" value="FALSE"><span>FALSE</span></label>
+            <label><input type="radio" name="q2" value="NOT GIVEN"><span>NOT GIVEN</span></label>
+          </div><div class="fb"></div></span></div>
+
+        <div class="q" data-q="3"><span class="n">3</span><span>
+          Nineteenth-century travellers recorded the number of apple varieties they found in the Tian Shan.
+          <div class="opts">
+            <label><input type="radio" name="q3" value="TRUE"><span>TRUE</span></label>
+            <label><input type="radio" name="q3" value="FALSE"><span>FALSE</span></label>
+            <label><input type="radio" name="q3" value="NOT GIVEN"><span>NOT GIVEN</span></label>
+          </div><div class="fb"></div></span></div>
+
+        <div class="q" data-q="4"><span class="n">4</span><span>
+          Bears are more selective about which apples they eat than birds are.
+          <div class="opts">
+            <label><input type="radio" name="q4" value="TRUE"><span>TRUE</span></label>
+            <label><input type="radio" name="q4" value="FALSE"><span>FALSE</span></label>
+            <label><input type="radio" name="q4" value="NOT GIVEN"><span>NOT GIVEN</span></label>
+          </div><div class="fb"></div></span></div>
+
+        <div class="q" data-q="5"><span class="n">5</span><span>
+          A seed taken from a sweet apple will usually grow into a tree bearing sweet fruit.
+          <div class="opts">
+            <label><input type="radio" name="q5" value="TRUE"><span>TRUE</span></label>
+            <label><input type="radio" name="q5" value="FALSE"><span>FALSE</span></label>
+            <label><input type="radio" name="q5" value="NOT GIVEN"><span>NOT GIVEN</span></label>
+          </div><div class="fb"></div></span></div>
+
+        <div class="q" data-q="6"><span class="n">6</span><span>
+          Grafting was developed by growers who were specifically trying to solve the problem of apple cultivation.
+          <div class="opts">
+            <label><input type="radio" name="q6" value="TRUE"><span>TRUE</span></label>
+            <label><input type="radio" name="q6" value="FALSE"><span>FALSE</span></label>
+            <label><input type="radio" name="q6" value="NOT GIVEN"><span>NOT GIVEN</span></label>
+          </div><div class="fb"></div></span></div>
+      </div>
+
+      <div class="qblock">
+        <span class="rng">Questions 7–13</span>
+        <div class="inst">Complete the summary below.<br><br>
+          <b>Drag</b> a word into each gap. On a phone, tap the word and then tap the gap.
+          Tap a word you have already placed to send it back.</div>
+
+        <div class="wordbank" id="bank">
+          <button type="button" class="chip" data-l="A" data-w="grafting"><b>A</b>grafting</button>
+          <button type="button" class="chip" data-l="B" data-w="Tian Shan"><b>B</b>Tian Shan</button>
+          <button type="button" class="chip" data-l="C" data-w="crab apple"><b>C</b>crab apple</button>
+          <button type="button" class="chip" data-l="D" data-w="selection"><b>D</b>selection</button>
+          <button type="button" class="chip" data-l="E" data-w="Silk Road"><b>E</b>Silk Road</button>
+          <button type="button" class="chip" data-l="F" data-w="livestock"><b>F</b>livestock</button>
+          <button type="button" class="chip" data-l="G" data-w="cities"><b>G</b>cities</button>
+          <button type="button" class="chip" data-l="H" data-w="pollination"><b>H</b>pollination</button>
+          <button type="button" class="chip" data-l="I" data-w="Himalayas"><b>I</b>Himalayas</button>
+          <button type="button" class="chip" data-l="J" data-w="irrigation"><b>J</b>irrigation</button>
+        </div>
+
+        <div class="summary">
+          The wild apple forests of the <span class="drop" data-q="7" tabindex="0" role="button" aria-label="Gap 7">7</span> mountains contain trees whose fruit is unusually large
+          for a wild species. Researchers attribute this size to a long process of <span class="drop" data-q="8" tabindex="0" role="button" aria-label="Gap 8">8</span> carried out
+          by large mammals, which favoured the sweetest fruit and carried its seeds away. Once trade began along
+          the <span class="drop" data-q="9" tabindex="0" role="button" aria-label="Gap 9">9</span>, seeds moved westwards, and the resulting trees interbred with the European
+          <span class="drop" data-q="10" tabindex="0" role="button" aria-label="Gap 10">10</span>. Because apple seeds do not reproduce the qualities of the parent tree, growers came
+          to depend on <span class="drop" data-q="11" tabindex="0" role="button" aria-label="Gap 11">11</span> instead. The wild forests are now shrinking, partly because
+          <span class="drop" data-q="12" tabindex="0" role="button" aria-label="Gap 12">12</span> destroy young trees, and partly because <span class="drop" data-q="13" tabindex="0" role="button" aria-label="Gap 13">13</span> have expanded into the
+          slopes where the forest grew.
+        </div>
+
+        <div style="margin-top:18px">
+        <div class="q qsum" data-q="7"><span class="n">7</span><span><div class="fb"></div></span></div>
+        <div class="q qsum" data-q="8"><span class="n">8</span><span><div class="fb"></div></span></div>
+        <div class="q qsum" data-q="9"><span class="n">9</span><span><div class="fb"></div></span></div>
+        <div class="q qsum" data-q="10"><span class="n">10</span><span><div class="fb"></div></span></div>
+        <div class="q qsum" data-q="11"><span class="n">11</span><span><div class="fb"></div></span></div>
+        <div class="q qsum" data-q="12"><span class="n">12</span><span><div class="fb"></div></span></div>
+        <div class="q qsum" data-q="13"><span class="n">13</span><span><div class="fb"></div></span></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="check">Check answers</button>
+        <button class="btn ghost" id="clear">Clear all</button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="big" id="score">0 / 13</div>
+        <p id="verdict"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== WRITING ===================== -->
+<div class="page wrap hidden" id="writing">
+
+  <div class="head">
+    <span class="eyebrow">Academic Writing · Tasks 1 and 2 · 60 minutes</span>
+    <h1>Writing</h1>
+    <p>Spend about 20 minutes on Task 1 and 40 minutes on Task 2. Task 2 carries roughly twice the weight of Task 1 in your final score.</p>
+  </div>
+
+  <div class="task">
+    <h2>Writing Task 1</h2>
+    <p class="lead">You should spend about 20 minutes on this task. Write at least 150 words.</p>
+
+    <div class="prompt">
+      The chart below shows apple production in four countries in 2004 and 2024, measured in millions of tonnes.<br><br>
+      Summarise the information by selecting and reporting the main features, and make comparisons where relevant.
+    </div>
+
+    <figure class="chartbox" style="margin-block:18px 0">
+      <svg viewBox="0 0 620 320" width="100%" height="auto" role="img" aria-label="Bar chart of apple production in four countries in 2004 and 2024">
+        <line x1="70" y1="20" x2="70" y2="252" stroke="#C9CED4" stroke-width="1.5"/>
+        <line x1="70" y1="252" x2="596" y2="252" stroke="#C9CED4" stroke-width="1.5"/>
+        <g font-family="JetBrains Mono, monospace" font-size="11" fill="#8E9098">
+          <text x="60" y="256" text-anchor="end">0</text>
+          <text x="60" y="198" text-anchor="end">10</text>
+          <text x="60" y="140" text-anchor="end">20</text>
+          <text x="60" y="82" text-anchor="end">30</text>
+          <text x="60" y="24" text-anchor="end">40</text>
+        </g>
+        <g stroke="#EDF0F3" stroke-width="1">
+          <line x1="70" y1="194" x2="596" y2="194"/><line x1="70" y1="136" x2="596" y2="136"/>
+          <line x1="70" y1="78" x2="596" y2="78"/><line x1="70" y1="20" x2="596" y2="20"/>
+        </g>
+        <!-- 2004 bars (cyan) : values 21.0, 4.6, 8.2, 2.4  -> px = v*5.8 -->
+        <rect x="96"  y="130" width="38" height="122" fill="#29C5F6" rx="3"/>
+        <rect x="226" y="225" width="38" height="27"  fill="#29C5F6" rx="3"/>
+        <rect x="356" y="204" width="38" height="48"  fill="#29C5F6" rx="3"/>
+        <rect x="486" y="238" width="38" height="14"  fill="#29C5F6" rx="3"/>
+        <!-- 2024 bars (ink) : values 47.5(cap 40->shown 39), 10.5, 5.1, 6.8 -->
+        <rect x="138" y="26"  width="38" height="226" fill="#0A0A0B" rx="3"/>
+        <rect x="268" y="191" width="38" height="61"  fill="#0A0A0B" rx="3"/>
+        <rect x="398" y="222" width="38" height="30"  fill="#0A0A0B" rx="3"/>
+        <rect x="528" y="213" width="38" height="39"  fill="#0A0A0B" rx="3"/>
+        <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="#0A0A0B" text-anchor="middle">
+          <text x="115" y="124">21.0</text><text x="157" y="20">39.0</text>
+          <text x="245" y="219">4.6</text><text x="287" y="185">10.5</text>
+          <text x="375" y="198">8.2</text><text x="417" y="216">5.1</text>
+          <text x="505" y="232">2.4</text><text x="547" y="207">6.8</text>
+        </g>
+        <g font-family="Instrument Sans, sans-serif" font-size="12.5" fill="#0A0A0B" text-anchor="middle">
+          <text x="136" y="272">Country A</text><text x="266" y="272">Country B</text>
+          <text x="396" y="272">Country C</text><text x="526" y="272">Country D</text>
+        </g>
+        <g font-family="Instrument Sans, sans-serif" font-size="12.5" fill="#55565C">
+          <rect x="230" y="294" width="13" height="13" fill="#29C5F6" rx="2"/><text x="250" y="305">2004</text>
+          <rect x="308" y="294" width="13" height="13" fill="#0A0A0B" rx="2"/><text x="328" y="305">2024</text>
+        </g>
+      </svg>
+      <figcaption>Apple production, millions of tonnes</figcaption>
+    </figure>
+
+    <textarea id="t1" placeholder="Write your answer here…" aria-label="Task 1 answer"></textarea>
+    <div class="wc"><span>Minimum 150 words</span><span>Words: <b id="c1">0</b></span></div>
+    <div class="wbar"><i id="b1"></i></div>
+  </div>
+
+  <div class="task">
+    <h2>Writing Task 2</h2>
+    <p class="lead">You should spend about 40 minutes on this task. Write at least 250 words.</p>
+
+    <div class="prompt">
+      Many skills that once required several years of formal training can now be learned online in a matter of months. Some people see this as progress, while others believe it lowers professional standards.<br><br>
+      Discuss both these views and give your own opinion.
+    </div>
+
+    <textarea id="t2" placeholder="Write your answer here…" aria-label="Task 2 answer"></textarea>
+    <div class="wc"><span>Minimum 250 words</span><span>Words: <b id="c2">0</b></span></div>
+    <div class="wbar"><i id="b2"></i></div>
+  </div>
+
+  <div class="note">
+    <b>This is where the AI marker plugs in.</b> Right now these boxes only count words. Once the grading endpoint is live, the same two text areas send their contents for scoring against the four official criteria, and the feedback appears underneath — the same layout the landing page demonstrates.
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- tabs ---------- */
+  var pages = { reading: document.getElementById('reading'), writing: document.getElementById('writing') };
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('on'); });
+      t.classList.add('on');
+      Object.keys(pages).forEach(function(k){ pages[k].classList.toggle('hidden', k !== t.dataset.go); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  /* ---------- timer ---------- */
+  var total = 20 * 60, left = total, tid = null;
+  var clock = document.getElementById('clock');
+  function paint(){
+    var m = Math.floor(left / 60), s = left % 60;
+    clock.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    clock.classList.toggle('low', left <= 120);
+  }
+  document.getElementById('tstart').addEventListener('click', function(){
+    if (tid){ clearInterval(tid); tid = null; this.textContent = 'Start'; return; }
+    this.textContent = 'Pause';
+    var btn = this;
+    tid = setInterval(function(){
+      if (left > 0){ left--; paint(); }
+      else { clearInterval(tid); tid = null; btn.textContent = 'Start'; }
+    }, 1000);
+  });
+  document.getElementById('treset').addEventListener('click', function(){
+    clearInterval(tid); tid = null; left = total; paint();
+    document.getElementById('tstart').textContent = 'Start';
+  });
+  paint();
+
+  /* ---------- answer key ---------- */
+  var KEY = {
+    1:  { a:'TRUE',      p:'A', why:'The name comes from the Kazakh word for apple, and the forests grow on the slopes above the city.' },
+    2:  { a:'FALSE',     p:'B', why:'The text says the opposite — most wild apples are small, while this species regularly produces fruit the size of a supermarket apple.' },
+    3:  { a:'NOT GIVEN', p:'A', why:'The paragraph describes what travellers saw and smelled, but says nothing about them counting or recording varieties. A classic NOT GIVEN: the topic appears, the specific claim does not.' },
+    4:  { a:'TRUE',      p:'C', why:'The text contrasts birds, which swallow seeds whole, with a bear that does not eat indiscriminately and returns to the best trees.' },
+    5:  { a:'FALSE',     p:'E', why:'The text states that a seed from a sweet apple will almost never produce a tree bearing sweet fruit.' },
+    6:  { a:'NOT GIVEN', p:'E', why:'The text says grafting was already established and that it solved the problem — not that it was invented for that purpose. Watch for cause claims the passage never makes.' },
+    7:  { a:'B', p:'A', why:'Tian Shan.' },
+    8:  { a:'D', p:'C', why:'Selection — the paragraph describes an unplanned selection carried out by animals.' },
+    9:  { a:'E', p:'D', why:'Silk Road.' },
+    10: { a:'C', p:'D', why:'Crab apple — the text names Malus sylvestris, the European crab apple.' },
+    11: { a:'A', p:'E', why:'Grafting.' },
+    12: { a:'F', p:'F', why:'Livestock eat the seedlings before they establish.' },
+    13: { a:'G', p:'F', why:'Cities — the text describes Almaty expanding up the slopes. "Irrigation" is the distractor; the passage never mentions it.' }
+  };
+
+  function given(n){
+    var r = document.querySelector('input[name="q' + n + '"]:checked');
+    if (r) return r.value;
+    var d = document.querySelector('.drop[data-q="' + n + '"]');
+    return d ? (d.dataset.v || '') : '';
+  }
+
+  var WORDS = {A:'grafting',B:'Tian Shan',C:'crab apple',D:'selection',E:'Silk Road',
+               F:'livestock',G:'cities',H:'pollination',I:'Himalayas',J:'irrigation'};
+  function WORD(l){ return WORDS[l] || l; }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* progress as you answer */
+  var pbar = document.getElementById('pbar'), plbl = document.getElementById('plbl');
+  function progress(){
+    var done = 0;
+    for (var n = 1; n <= 13; n++) if (given(n)) done++;
+    pbar.style.width = (done / 13 * 100) + '%';
+    plbl.textContent = done + ' / 13';
+    plbl.classList.toggle('full', done === 13);
+  }
+  document.addEventListener('change', progress);
+  document.addEventListener('input', progress);
+
+  /* click a paragraph reference and it lights up in the passage */
+  document.addEventListener('click', function(e){
+    var j = e.target.closest('.jump');
+    if (!j) return;
+    e.preventDefault();
+    var para = document.querySelector('.para[data-p="' + j.dataset.p + '"]');
+    if (!para) return;
+    para.classList.remove('flash');
+    void para.offsetWidth;
+    para.classList.add('flash');
+    para.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  /* ripple on buttons */
+  document.querySelectorAll('.btn').forEach(function(b){
+    b.addEventListener('click', function(e){
+      if (reduce) return;
+      var r = b.getBoundingClientRect(), d = Math.max(r.width, r.height);
+      var s = document.createElement('span');
+      s.className = 'rip';
+      s.style.width = s.style.height = d + 'px';
+      s.style.left = (e.clientX - r.left - d / 2) + 'px';
+      s.style.top = (e.clientY - r.top - d / 2) + 'px';
+      b.appendChild(s);
+      setTimeout(function(){ s.remove(); }, 560);
+    });
+  });
+
+  function countUp(el, to, suffix){
+    if (reduce){ el.textContent = to + suffix; return; }
+    var i = 0;
+    (function tick(){
+      el.textContent = i + suffix;
+      if (i++ < to) setTimeout(tick, 70);
+    })();
+  }
+
+  function burst(host){
+    if (reduce) return;
+    for (var i = 0; i < 7; i++){
+      (function(k){
+        setTimeout(function(){
+          var s = document.createElement('span');
+          s.className = 'star';
+          s.textContent = '★';
+          s.style.color = k % 2 ? '#FFC530' : '#29C5F6';
+          s.style.left = (12 + Math.random() * 76) + '%';
+          s.style.top = (10 + Math.random() * 55) + '%';
+          host.appendChild(s);
+          setTimeout(function(){ s.remove(); }, 950);
+        }, k * 65);
+      })(i);
+    }
+  }
+
+  document.getElementById('check').addEventListener('click', function(){
+    var right = 0, blank = 0, btn = this;
+    btn.disabled = true;
+    btn.textContent = 'Marking…';
+
+    for (var n = 1; n <= 13; n++){
+      (function(n){
+        var delay = reduce ? 0 : 180 + (n - 1) * 130;
+        setTimeout(function(){
+          var got = given(n), want = KEY[n].a, ok = got === want;
+          var row = document.querySelector('.q[data-q="' + n + '"]');
+          var num = row.querySelector('.n');
+          var fb  = row.querySelector('.fb');
+
+          row.classList.remove('marked-ok','marked-no');
+          row.classList.add(ok ? 'marked-ok' : 'marked-no');
+
+          var old = num.querySelector('.badge');
+          if (old) old.remove();
+          var b = document.createElement('span');
+          b.className = 'badge ' + (ok ? 'ok' : 'no');
+          b.textContent = ok ? '✓' : '✕';
+          num.appendChild(b);
+
+          var dz = document.querySelector('.drop[data-q="' + n + '"]');
+          if (dz){ dz.classList.remove('ok','no'); dz.classList.add(ok ? 'ok' : 'no'); }
+          row.classList.add('shown');
+
+          fb.className = 'fb on ' + (ok ? 'good' : 'bad');
+          fb.innerHTML = (ok ? '<b>Correct.</b> ' : '<b>Answer: ' + want + ' &mdash; ' + WORD(want) + '.</b> ') + KEY[n].why +
+            '<br><a class="jump" data-p="' + KEY[n].p + '">Show paragraph ' + KEY[n].p + ' →</a>';
+        }, delay);
+      })(n);
+    }
+
+    for (var m = 1; m <= 13; m++){
+      if (given(m) === KEY[m].a) right++;
+      if (!given(m)) blank++;
+    }
+
+    setTimeout(function(){
+      btn.disabled = false;
+      btn.textContent = 'Check answers';
+
+      var res = document.getElementById('result');
+      res.classList.add('on');
+      countUp(document.getElementById('score'), right, ' / 13');
+
+      var msg;
+      if (right >= 11) msg = 'Strong. At this rate across a full paper you would be looking at band 7.5 or above.';
+      else if (right >= 8) msg = 'Solid. The gap is usually NOT GIVEN — check whether the text makes the exact claim, not a related one.';
+      else if (right >= 5) msg = 'Mid range. Locate the sentence that answers each question before deciding, rather than relying on your memory of the passage.';
+      else msg = 'Take it again slowly, with the timer off. Find and underline the sentence behind every answer before you commit to it.';
+      if (blank) msg = blank + ' left blank. ' + msg;
+      document.getElementById('verdict').textContent = msg +
+        ' A full Academic Reading paper is 40 questions across three passages, so a band score can only be calculated from the complete test.';
+
+      res.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'nearest' });
+      if (right >= 11) burst(res);
+    }, reduce ? 0 : 180 + 13 * 130 + 200);
+  });
+
+  document.getElementById('clear').addEventListener('click', function(){
+    document.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
+    if (window.__resetBoard) window.__resetBoard();
+    document.querySelectorAll('.qsum').forEach(function(q){ q.classList.remove('shown'); });
+    document.querySelectorAll('.fb').forEach(function(f){ f.className = 'fb'; f.innerHTML = ''; });
+    document.querySelectorAll('.badge').forEach(function(b){ b.remove(); });
+    document.querySelectorAll('.q').forEach(function(q){ q.classList.remove('marked-ok','marked-no'); });
+    document.getElementById('result').classList.remove('on');
+    progress();
+  });
+
+  /* ---------- word counters ---------- */
+  function count(id, out, bar){
+    var el = document.getElementById(id), o = document.getElementById(out), b = document.getElementById(bar);
+    var min = id === 't1' ? 150 : 250;
+    el.addEventListener('input', function(){
+      var t = el.value.trim();
+      var n = t ? t.split(/\s+/).length : 0;
+      o.textContent = n;
+      o.parentElement.className = n === 0 ? '' : (n < min ? 'under' : 'over');
+      b.style.width = Math.min(100, n / min * 100) + '%';
+      b.classList.toggle('done', n >= min);
+    });
+  }
+  count('t1','c1','b1'); count('t2','c2','b2');
+
+  /* ---------- drag and drop for questions 7–13 ---------- */
+  (function(){
+    var bank = document.getElementById('bank');
+    if (!bank) return;
+    var chips = [].slice.call(bank.querySelectorAll('.chip'));
+    var drops = [].slice.call(document.querySelectorAll('.drop'));
+    var armed = null, ghost = null, held = null, sx = 0, sy = 0, moved = false;
+
+    function chipOf(l){ return bank.querySelector('.chip[data-l="' + l + '"]'); }
+
+    function arm(chip){
+      chips.forEach(function(c){ c.classList.remove('armed'); });
+      armed = chip || null;
+      if (armed) armed.classList.add('armed');
+      drops.forEach(function(d){ d.classList.toggle('waiting', !!armed && !d.dataset.v); });
+    }
+
+    function unplace(d){
+      var l = d.dataset.v;
+      if (!l) return;
+      var c = chipOf(l);
+      if (c) c.classList.remove('used');
+      delete d.dataset.v;
+      d.classList.remove('filled','ok','no');
+      d.textContent = d.dataset.q;
+      progress();
+    }
+
+    function place(d, l){
+      drops.forEach(function(x){ if (x !== d && x.dataset.v === l) unplace(x); });
+      if (d.dataset.v) unplace(d);
+      var c = chipOf(l);
+      d.dataset.v = l;
+      d.textContent = c ? c.dataset.w : l;
+      d.classList.add('filled');
+      d.classList.remove('ok','no','pop','waiting');
+      void d.offsetWidth;
+      d.classList.add('pop');
+      if (c) c.classList.add('used');
+      arm(null);
+      progress();
+    }
+
+    window.__resetBoard = function(){
+      drops.forEach(function(d){ d.classList.remove('ok','no'); unplace(d); });
+      arm(null);
+    };
+
+    function under(e){
+      var el = document.elementFromPoint(e.clientX, e.clientY);
+      return el && el.closest ? el.closest('.drop') : null;
+    }
+
+    chips.forEach(function(chip){
+      chip.addEventListener('pointerdown', function(e){
+        if (chip.classList.contains('used')) return;
+        held = chip; moved = false; sx = e.clientX; sy = e.clientY;
+        try { chip.setPointerCapture(e.pointerId); } catch(err){}
+      });
+
+      chip.addEventListener('pointermove', function(e){
+        if (held !== chip) return;
+        if (!moved){
+          if (Math.abs(e.clientX - sx) < 6 && Math.abs(e.clientY - sy) < 6) return;
+          if (reduce) return;
+          moved = true;
+          ghost = chip.cloneNode(true);
+          ghost.className = 'chip ghostchip';
+          document.body.appendChild(ghost);
+          chip.classList.add('lifting');
+        }
+        ghost.style.left = e.clientX + 'px';
+        ghost.style.top  = e.clientY + 'px';
+        var d = under(e);
+        drops.forEach(function(x){ x.classList.toggle('over', x === d); });
+      });
+
+      function release(e){
+        if (held !== chip) return;
+        var wasDrag = moved;
+        if (ghost){ ghost.remove(); ghost = null; }
+        chip.classList.remove('lifting');
+        held = null; moved = false;
+        var d = wasDrag ? under(e) : null;
+        drops.forEach(function(x){ x.classList.remove('over'); });
+        if (d) place(d, chip.dataset.l);
+        else if (!wasDrag) arm(armed === chip ? null : chip);
+      }
+      chip.addEventListener('pointerup', release);
+      chip.addEventListener('pointercancel', release);
+
+      chip.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); arm(armed === chip ? null : chip); }
+      });
+    });
+
+    drops.forEach(function(d){
+      d.addEventListener('click', function(){
+        if (armed) place(d, armed.dataset.l);
+        else if (d.dataset.v) unplace(d);
+      });
+      d.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); d.click(); }
+        if (e.key === 'Backspace' || e.key === 'Delete'){ e.preventDefault(); unplace(d); }
+      });
+    });
+
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') arm(null); });
+  })();
+})();
+</script>
+</body>
+</html>
