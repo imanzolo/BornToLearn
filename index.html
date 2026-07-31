@@ -692,6 +692,14 @@ textarea:focus{border-color:var(--cyan);outline:none}
 }
 
 
+.ex-timer.last{animation:tick .6s steps(2) infinite}
+.timewarn{position:fixed;left:50%;top:78px;transform:translateX(-50%);z-index:400;
+ background:var(--ink);color:#fff;padding:13px 22px;border-radius:12px;font-size:15.5px;font-weight:600;
+ box-shadow:0 16px 36px -16px rgba(10,10,11,.7);animation:warnin .32s var(--spring) both}
+@keyframes warnin{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
+.timewarn.out{opacity:0;transition:opacity .5s}
+
+
 /* ---------- highlighter ---------- */
 .para, .stim, .summary, .qlist, .cuecard{ -webkit-user-select:text; user-select:text }
 mark.hlmark{background:#FFE9A8;color:inherit;border-radius:3px;padding:0 1px;box-decoration-break:clone}
@@ -2111,7 +2119,7 @@ function shell() {
       '<span class="ex-kind">' + EX.kindLabel + '</span></div>' +
     '<div class="ex-r">' +
       '<span class="ex-timer" id="extimer">' + fmt(TLEFT) + '</span>' +
-      '<button class="ex-tool" id="extime" title="Start or pause the clock">Start</button>' +
+      '<button class="ex-tool" id="extime" title="Pause or resume the clock">Pause</button>' +
       '<button class="ex-tool" id="exfull" title="Full screen">&#9974;</button>' +
     '</div></div>' +
     '<div class="exam-body" id="exbody"></div>' +
@@ -2129,18 +2137,44 @@ function wire() {
   });
   var tb = document.getElementById("extime");
   tb.addEventListener("click", function () {
-    if (TID) { clearInterval(TID); TID = null; tb.textContent = "Start"; return; }
-    tb.textContent = "Pause";
-    TID = setInterval(function () {
-      if (TLEFT > 0) { TLEFT--; var t = document.getElementById("extimer");
-        if (t) { t.textContent = fmt(TLEFT); t.classList.toggle("low", TLEFT <= 300); } }
-      else { clearInterval(TID); TID = null; tb.textContent = "Start"; }
-    }, 1000);
+    if (TID) { stopClock(); tb.textContent = "Resume"; return; }
+    startClock();
   });
+  startClock();                       /* the clock runs from the moment the paper opens */
   document.getElementById("exsubmit").addEventListener("click", confirmSubmit);
 }
 
 function stopClock(){ if (TID) { clearInterval(TID); TID = null; } }
+
+function startClock() {
+  if (TID) return;
+  var tb = document.getElementById("extime");
+  if (tb) tb.textContent = "Pause";
+  TID = setInterval(function () {
+    if (TLEFT > 0) {
+      TLEFT--;
+      var t = document.getElementById("extimer");
+      if (t) {
+        t.textContent = fmt(TLEFT);
+        t.classList.toggle("low", TLEFT <= 300);
+        t.classList.toggle("last", TLEFT <= 60);
+      }
+      if (TLEFT === 300) timeWarn("Five minutes left.");
+      if (TLEFT === 60)  timeWarn("One minute left.");
+    } else {
+      stopClock();
+      if (!SUBMITTED) { timeWarn("Time is up. Your answers have been submitted."); doSubmit(); }
+    }
+  }, 1000);
+}
+
+function timeWarn(text) {
+  var w = document.createElement("div");
+  w.className = "timewarn";
+  w.textContent = text;
+  document.body.appendChild(w);
+  setTimeout(function () { w.classList.add("out"); setTimeout(function () { w.remove(); }, 500); }, 3200);
+}
 function unlockScroll(){ document.body.classList.remove("exam-open"); }
 window.addEventListener("hashchange", function () {
   if (location.hash.indexOf("/test/") < 0) unlockScroll();
